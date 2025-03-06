@@ -1,0 +1,40 @@
+body {
+  color: white;
+  background-color: orange;
+}
+
+.grid {
+  background-color: red;
+  margin-left: 10%;
+  margin-right: 15%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+p {
+  color: white;
+  font-family: "Comic Sans MS";
+}
+
+.welcome {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.scott {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  height: 200px;
+  width: 200px;
+}
+
+.age-button {
+  cursor: pointer;
+  padding: 1px 6px;
+  border: 1px outset buttonborder;
+  color: black;
+  background-color: orangered;
+  text-decoration: none;
+  height: 55px;
+  width: 55px;
+}

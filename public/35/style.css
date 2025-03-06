@@ -1,0 +1,6 @@
+body {
+  background-image: url("pizza.png");
+  background-repeat: repeat;
+  background-size: 50px 50px;
+  background-color: orange;
+}
