@@ -9,10 +9,6 @@ body {
   justify-content: center;
 }
 
-p {
-  font-family: "Comic Sans MS";
-}
-
 .pie {
   -webkit-animation: spin 4s linear infinite;
   -moz-animation: spin 4s linear infinite;
@@ -33,4 +29,12 @@ p {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.caption {
+  background-color: burlywood;
+  margin-top: -5px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }

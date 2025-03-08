@@ -12,7 +12,7 @@
   <body>
     <h1
       style="
-        font-size: 25vh;
+        font-size: 15vh;
         margin-top: 0;
         margin-bottom: 0;
         color: blueviolet;
@@ -35,6 +35,40 @@
       <p style="font-size: 10vh; color: blueviolet">Party time!!</p>
       <img class="pie" style="height: 15vh; width: 20vw" src="pie.png" />
     </div>
-    <p style="font-size: 6vh">Scroll through the gallery of memories</p>
+    <div style="background-color: brown; width: 80%; justify-items: center">
+      <p
+        style="
+          font-size: 10vh;
+          font-family: Brush Script MT, Brush Script Std, cursive;
+        "
+      >
+        In memoriam
+      </p>
+      <p
+        style="
+          font-size: 7vh;
+          margin-top: -30px;
+          font-family: Brush Script MT, Brush Script Std, cursive;
+        "
+      >
+        Photo gallery
+      </p>
+
+      <img style="width: 60vw; margin-bottom: 0px" src="gallery/baby.jpg" />
+      <p class="caption">
+        Scott was born when he was just a baby at just zero years old
+      </p>
+      <p>.</p>
+      <img src="gallery/computer.jpg" />
+      <p class="caption">Remember when scott was like this?</p>
+      <img src="gallery/computer.jpg" />
+      <div class="caption" style="display: flex">
+        <px>Remember when scott looked like this?</p>
+        <button onclick="document.getElementById('meToo').innerHTML = 'Me too'">
+          Yes
+        </button>
+        <p id="meToo"></p>
+      </div>
+    </div>
   </body>
 </html>
