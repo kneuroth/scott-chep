@@ -5,18 +5,18 @@ const { mainModule } = require("process");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "docs")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "docs", "index.html"));
 });
 
 app.get("/35", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/35", "main.html"));
+  res.sendFile(path.join(__dirname, "docs/35", "main.html"));
 });
 
 app.get("/wrong", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/wrong", "main.html"));
+  res.sendFile(path.join(__dirname, "docs/wrong", "main.html"));
 });
 
 app.listen(3000, () => {
