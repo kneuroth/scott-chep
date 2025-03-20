@@ -4,6 +4,14 @@
     <title>Scoot 35</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+  <script>
+    function playPromise(audio) {
+      return new Promise((resolve) => {
+        audio.onended = resolve;
+        audio.play();
+      });
+    }
+  </script>
   <!-- Old-school HTML attribute for background -->
   <!-- <audio autoplay>
     <source src="celebrate.mp3" type="audio/mpeg" />
@@ -63,18 +71,16 @@
       <p class="caption">Remember when scott was like this?</p>
       <img src="gallery/computer.jpg" />
       <div class="caption" style="display: flex">
-        <px>Remember when scott looked like this?</p>
+        <p>Remember when scott looked like this?</p>
         <button onclick="document.getElementById('meToo').innerHTML = ''">
           Yes
         </button>
-        <p id="meToo"></p>
       </div>
       <img src="gallery/sunny.jpg" />
       <p class="caption">Enjoy the sun, my son.</p>
-
     </div>
 
-    <br>
+    <br />
 
     <div style="background-color: brown; width: 80%; justify-items: center">
       <p
@@ -87,39 +93,28 @@
       </p>
 
       <div>
-        <img id="door" style="cursor: pointer;" src="door.png" onclick="doorSequence()">
+        <img
+          id="door"
+          style="cursor: pointer"
+          src="door.png"
+          onclick="doorSequence()"
+        />
       </div>
 
       <script>
-        function playPromise(audio) {
-          return new Promise(resolve => {
-            audio.onended = resolve;
-            audio.play();
-          });
-        }
-
-      </script>
-
-      <script>
-        
         async function doorSequence() {
-          const doorOpen = new Audio('door-knock-compressed.mp3')
-          await playPromise(doorOpen)
-          document.getElementById('door').src = 'door-open.jpg'
+          const doorOpen = new Audio("door-knock-compressed.mp3");
+          await playPromise(doorOpen);
+          document.getElementById("door").src = "door-open.jpg";
 
           // const groan = new Audio('groan-compressed.mp3');
           //await playPromise(groan);
 
-          const doorClose = new Audio('door-slam-compressed.mp3')
-          await playPromise(doorClose)
-          document.getElementById('door').src = 'door.png'
-          
+          const doorClose = new Audio("door-slam-compressed.mp3");
+          await playPromise(doorClose);
+          document.getElementById("door").src = "door.png";
         }
       </script>
-
-      
     </div>
-
-
   </body>
 </html>
