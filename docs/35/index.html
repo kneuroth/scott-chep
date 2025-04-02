@@ -3,6 +3,7 @@
   <head>
     <title>Scoot 35</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="maven-style.css" />
   </head>
   <script>
     function playPromise(audio) {
@@ -14,10 +15,22 @@
   </script>
   <!-- Old-school HTML attribute for background -->
   <audio autoplay>
-    <source src="celebrate.mp3" type="audio/mpeg" />
+    <!-- <source src="celebrate.mp3" type="audio/mpeg" /> -->
     Your browser does not support the audio element.
   </audio>
   <body>
+    <!-- Maven -->
+    <div class="maven">MAVEN</div>
+    <script>
+      async function catSpeakSequence() {
+        let min = 0;
+        let max = 9;
+        let rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        const doorOpen = new Audio(`mavin-speak-${rand}.mp3`);
+        audio.play();
+      }
+    </script>
+
     <h1
       style="
         font-size: 15vh;
@@ -121,7 +134,7 @@
           await playPromise(doorOpen);
           document.getElementById("door").src = "door-open.jpg";
 
-          // const groan = new Audio('groan-compressed.mp3');
+          // TODO const groan = new Audio('groan-compressed.mp3');
           //await playPromise(groan);
 
           const doorClose = new Audio("door-slam-compressed.mp3");
@@ -130,5 +143,8 @@
         }
       </script>
     </div>
+    <a class="next-button" href="../enter-pizza/index.html"
+      >Time to Enter Pizzas!</a
+    >
   </body>
 </html>

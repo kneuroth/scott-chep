@@ -1,0 +1,33 @@
+.maven {
+  position: fixed;
+  bottom: 10vh;
+  right: 5vw;
+  height: 20vh;
+  width: 10vw;
+  background-color: white;
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.7s;
+  animation-timing-function: linear;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0px, -2px);
+  }
+
+  50% {
+    transform: translate(0px, 2px);
+  }
+
+  100% {
+    transform: translate(0px, -2px);
+  }
+}
+.maven:hover {
+  height: 25vh;
+  width: 15vw;
+}

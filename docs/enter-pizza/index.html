@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pizza Entry</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="maven-style.css" />
+  </head>
+  <body>
+    <form id="myForm" action="http://localhost:8080/entries" method="post">
+      <label for="name">Pizza name:</label><br />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Pizzatron 100"
+      /><br />
+      <label for="creator">Creator:</label><br />
+      <input
+        type="text"
+        id="creator"
+        name="creator"
+        placeholder="Kelly"
+      /><br /><br />
+      <input type="submit" value="Submit Pizza" />
+    </form>
+    <a style="margin-top: 20px" class="next-button" href="../vote/index.html"
+      >Time to Vote!!</a
+    >
+  </body>
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const action = form.action;
+      const formData = new FormData(form);
+
+      const jsonObject = {};
+      formData.forEach((value, key) => {
+        jsonObject[key] = value;
+      });
+
+      fetch(action, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(jsonObject),
+      })
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.json(); // or response.text(), depending on what your server sends back
+        })
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+  </script>
+</html>
