@@ -3,7 +3,7 @@
   <head>
     <title>Scoot 35</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="maven-style.css" />
+    <link rel="stylesheet" href="mavis-style.css" />
   </head>
   <script>
     function playPromise(audio) {
@@ -20,13 +20,27 @@
   </audio>
   <body>
     <!-- Maven -->
-    <div class="maven">MAVEN</div>
+    <div>
+      <img
+        class="mavis"
+        id="mavis"
+        style="cursor: pointer"
+        src="mavis-1.png"
+        onclick="catSpeakSequence()"
+      />
+    </div>
     <script>
       async function catSpeakSequence() {
-        let min = 0;
-        let max = 9;
-        let rand = Math.floor(Math.random() * (max - min + 1)) + min;
-        const doorOpen = new Audio(`mavin-speak-${rand}.mp3`);
+        // let min = 0;
+        // let max = 9;
+        // let rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        // const catTalk = new Audio(`mavin-speak-${rand}.mp3`);
+        const catTalk = new Audio("door-knock-compressed.mp3");
+        await playPromise(catTalk);
+        document.getElementById("mavis").src = "mavis-2.png";
+
+        await playPromise(catTalk);
+        document.getElementById("mavis").src = "mavis-3.png";
         audio.play();
       }
     </script>
