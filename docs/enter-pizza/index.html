@@ -60,6 +60,8 @@
       /><br /><br />
       <input type="submit" value="Submit Pizza" />
     </form>
+    <p id="confirm-message" style="background-color: green; color: white"></p>
+    <p id="error-message" style="background-color: red; color: white"></p>
     <a style="margin-top: 20px" class="next-button" href="../vote/index.html"
       >Time to Vote!!</a
     >
@@ -85,11 +87,23 @@
         body: JSON.stringify(jsonObject),
       })
         .then((response) => {
-          if (!response.ok) throw new Error("Network response was not ok");
-          return response.json(); // or response.text(), depending on what your server sends back
+          if (!response.ok) {
+            console.log("Anthing");
+            document.getElementById("error-message").innerHTML =
+              "You fucked it up..";
+            document.getElementById("confirm-message").innerHTML = "";
+            return response.json(); // or response.text(), depending on what your server sends back
+          }
         })
         .then((data) => {
           console.log("Success:", data);
+          document.getElementById("error-message").innerHTML = "";
+          document.getElementById("confirm-message").innerHTML =
+            jsonObject.creator +
+            " entered " +
+            jsonObject.name +
+            " to pizza contest!";
+          form.reset();
         })
         .catch((error) => {
           console.error("Error:", error);
