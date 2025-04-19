@@ -4,6 +4,16 @@
     <title>Pizza Voting</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mavis-style.css" />
+    <style>
+      .entry {
+        border: 1px solid #ccc;
+        padding: 1em;
+        margin: 1em 0;
+        width: 300px;
+        border-radius: 8px;
+        background-color: aliceblue;
+      }
+    </style>
     <script>
       function playPromise(audio) {
         return new Promise((resolve) => {
@@ -11,6 +21,76 @@
           audio.play();
         });
       }
+    </script>
+
+    <script>
+      // fetch("http://localhost:8080/entries")
+      fetch(
+        "https://pizza-vote-container-0-1-24906197462.us-central1.run.app/entries"
+      )
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.json();
+        })
+        .then((entries) => {
+          const container = document.getElementById("entries-container");
+          container.innerHTML = ""; // clear loading text
+
+          entries.forEach((entry) => {
+            const div = document.createElement("div");
+            div.className = "entry";
+
+            div.innerHTML = `
+            <strong>Name:</strong> ${entry.name}<br>
+            <strong>Creator:</strong> ${entry.creator}<br>
+            <form class="vote-form">
+              <label>
+                Your name:
+                <input type="text" name="voterName" required>
+              </label>
+              <input type="hidden" name="entryId" value="${entry.id}">
+              <button type="submit">Cast Vote</button>
+            </form>
+          `;
+
+            // Add toggle functionality
+            const form = div.querySelector(".vote-form");
+
+            // Handle vote submission
+            form.addEventListener("submit", (e) => {
+              e.preventDefault();
+              const voterName = form.elements.voterName.value;
+              const entryId = form.elements.entryId.value;
+
+              // fetch("http://localhost:8080/votes", {
+              fetch(
+                "https://pizza-vote-container-0-1-24906197462.us-central1.run.app/votes",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    name: voterName,
+                    entryId: parseInt(entryId),
+                  }),
+                }
+              )
+                .then((resp) => {
+                  if (!resp.ok) throw new Error("Vote failed");
+                  alert("Vote cast successfully!");
+                  form.reset();
+                  form.style.display = "none";
+                  window.location.href = "/index.html";
+                })
+                .catch((err) => alert("Error: " + err.message));
+            });
+
+            container.appendChild(div);
+          });
+        })
+        .catch((error) => {
+          document.getElementById("output").textContent =
+            "Error: " + error.message;
+        });
     </script>
   </head>
   <body>
@@ -23,5 +103,16 @@
         onclick="catSpeakSequence()"
       />
     </div>
+    <h2
+      style="
+        font-size: 40vh;
+        margin-top: 0;
+        margin-bottom: 0;
+        color: blueviolet;
+      "
+    >
+      VOTE
+    </h2>
+    <div id="entries-container">Loading...</div>
   </body>
 </html>
