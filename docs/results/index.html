@@ -12,5 +12,66 @@
         });
       }
     </script>
+    <style>
+      .result {
+        border: 1px solid #ccc;
+        padding: 1em;
+        margin: 1em 0;
+        width: 300px;
+        border-radius: 8px;
+        background-color: aliceblue;
+      }
+      .winner {
+        border: 1px solid #ccc;
+        padding: 1em;
+        margin: 1em 0;
+        width: 300px;
+        border-radius: 8px;
+        background-color: green;
+      }
+    </style>
+    <script>
+      // fetch("http://localhost:8080/entries")
+      fetch(
+        "https://pizza-vote-container-0-1-24906197462.us-central1.run.app/results"
+      )
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.json();
+        })
+        .then((results) => {
+          const container = document.getElementById("results-container");
+          container.innerHTML = ""; // clear loading text
+
+          const maxVotes = Math.max(...results.map((r) => r.voteCount));
+          const topScorers = results
+            .filter((r) => r.voteCount === maxVotes)
+            .map((result) => result.entryName);
+          //winners = entries.reduce((acc, current) => current.voteCount > acc ? current.voteCount : acc)
+
+          results.forEach((result) => {
+            const div = document.createElement("div");
+            div.className = "result";
+
+            div.innerHTML = `
+            ${topScorers.includes(result.entryName) ? "<h1>WINNER</h1>" : ""}
+            <strong>Name:</strong> ${result.entryName}<br>
+            <strong>Creator:</strong> ${result.creator}<br>
+            <strong>VOTES COUNT: </strong> ${result.voteCount}<br>
+            
+          `;
+
+            container.appendChild(div);
+          });
+        })
+        .catch((error) => {
+          document.getElementById("output").textContent =
+            "Error: " + error.message;
+        });
+    </script>
   </head>
+  <body>
+    <div id="results-container"></div>
+    <div id="output"></div>
+  </body>
 </html>
