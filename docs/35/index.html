@@ -25,6 +25,7 @@
         margin-top: 0;
         margin-bottom: 0;
         color: blueviolet;
+        background-color: darkgreen;
       "
     >
       You got it!
@@ -34,24 +35,15 @@
     >
       Click for full experience
     </button>
-    <p style="background-color: white">
-      (some browsers the autoplay doesnt work so you have to click that but if
-      it is playing then it doubles up so thats just a small bug that im sure
-      will get fixed)
-    </p>
-    <p style="background-color: white">
-      (if you are hearing Celebrate! by Kool & The Gang then you are having the
-      full experience and no need to click the button.)
-    </p>
     <h2
       style="
-        font-size: 40vh;
+        font-size: 25vh;
         margin-top: 0;
         margin-bottom: 0;
         color: blueviolet;
       "
     >
-      35!!!
+      Happy Scott 35!!!
     </h2>
     <div style="display: flex; align-items: center">
       <img class="pie" style="height: 15vh; width: 20vw" src="pie.png" />
@@ -63,18 +55,12 @@
         style="
           font-size: 10vh;
           font-family: Brush Script MT, Brush Script Std, cursive;
+          background-color: floralwhite;
+          width: 100%;
+          text-align: center;
         "
       >
         In memoriam
-      </p>
-      <p
-        style="
-          font-size: 7vh;
-          margin-top: -30px;
-          font-family: Brush Script MT, Brush Script Std, cursive;
-        "
-      >
-        Photo gallery
       </p>
 
       <img style="width: 60vw; margin-bottom: 0px" src="gallery/baby.jpg" />
@@ -107,18 +93,6 @@
         Scotts Favs
       </p>
 
-      <div>
-        <h1 style="font-family: Comic Sans MS">Paint grandma</h1>
-        <img
-          id="door"
-          style="cursor: pointer"
-          src="door.png"
-          onclick="doorSequence()"
-        />
-      </div>
-
-      <script src="door-open.js"></script>
-
       <!-- Mavis -->
 
       <div style="padding-top: 40px">
@@ -132,6 +106,28 @@
         />
       </div>
       <script src="mavis.js"></script>
+
+      <div>
+        <h1 style="font-family: Comic Sans MS">Special Guest</h1>
+        <img
+          id="door"
+          style="cursor: pointer"
+          src="door.png"
+          onclick="doorSequence()"
+        />
+      </div>
+      <script src="door-open.js"></script>
+
+      <div>
+        <h1 style="font-family: Comic Sans MS">Eat da pizza</h1>
+        <img
+          id="eat-pizza"
+          style="cursor: pointer; height: 30vh"
+          src="eat-pizza-0.png"
+          onclick="eatPizza()"
+        />
+      </div>
+      <script src="eat-pizza.js"></script>
     </div>
     <a class="next-button" href="../enter-pizza/index.html"
       >Time to Enter Pizzas!</a

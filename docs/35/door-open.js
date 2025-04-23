@@ -3,8 +3,8 @@ async function doorSequence() {
   await playPromise(doorOpen);
   document.getElementById("door").src = "door-open.jpg";
 
-  // TODO const groan = new Audio('groan-compressed.mp3');
-  //await playPromise(groan);
+  const groan = new Audio("door-knock-compressed.mp3");
+  await playPromise(groan);
 
   const doorClose = new Audio("door-slam-compressed.mp3");
   await playPromise(doorClose);
