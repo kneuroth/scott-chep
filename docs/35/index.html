@@ -19,32 +19,6 @@
     Your browser does not support the audio element.
   </audio>
   <body>
-    <!-- Mavis -->
-    <div>
-      <img
-        class="mavis"
-        id="mavis"
-        style="cursor: pointer"
-        src="mavis-1.png"
-        onclick="catSpeakSequence()"
-      />
-    </div>
-    <script>
-      async function catSpeakSequence() {
-        // let min = 0;
-        // let max = 9;
-        // let rand = Math.floor(Math.random() * (max - min + 1)) + min;
-        // const catTalk = new Audio(`mavin-speak-${rand}.mp3`);
-        const catTalk = new Audio("door-knock-compressed.mp3");
-        await playPromise(catTalk);
-        document.getElementById("mavis").src = "mavis-2.png";
-
-        await playPromise(catTalk);
-        document.getElementById("mavis").src = "mavis-3.png";
-        audio.play();
-      }
-    </script>
-
     <h1
       style="
         font-size: 15vh;
@@ -134,6 +108,7 @@
       </p>
 
       <div>
+        <h1 style="font-family: Comic Sans MS">Paint grandma</h1>
         <img
           id="door"
           style="cursor: pointer"
@@ -142,20 +117,21 @@
         />
       </div>
 
-      <script>
-        async function doorSequence() {
-          const doorOpen = new Audio("door-knock-compressed.mp3");
-          await playPromise(doorOpen);
-          document.getElementById("door").src = "door-open.jpg";
+      <script src="door-open.js"></script>
 
-          // TODO const groan = new Audio('groan-compressed.mp3');
-          //await playPromise(groan);
+      <!-- Mavis -->
 
-          const doorClose = new Audio("door-slam-compressed.mp3");
-          await playPromise(doorClose);
-          document.getElementById("door").src = "door.png";
-        }
-      </script>
+      <div style="padding-top: 40px">
+        <h1 style="font-family: Comic Sans MS">Mavis the cat</h1>
+        <img
+          class="mavis"
+          id="mavis"
+          style="cursor: pointer"
+          src="mavis-1.png"
+          onclick="catSpeakSequence()"
+        />
+      </div>
+      <script src="mavis.js"></script>
     </div>
     <a class="next-button" href="../enter-pizza/index.html"
       >Time to Enter Pizzas!</a

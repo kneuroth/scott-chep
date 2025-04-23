@@ -1,9 +1,6 @@
 .mavis {
-  position: fixed;
-  bottom: 10vh;
-  right: 5vw;
-  height: 20vh;
-  width: 10vw;
+  height: 40vh;
+  width: 40vw;
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.7s;
   animation-timing-function: linear;
