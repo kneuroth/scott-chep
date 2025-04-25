@@ -49,3 +49,137 @@ body {
   height: 55px;
   width: 55px;
 }
+
+@keyframes backgroundSpin {
+  0% {
+    background-color: #ff00ff;
+  }
+  25% {
+    background-color: #00ffff;
+  }
+  50% {
+    background-color: #ffff00;
+  }
+  75% {
+    background-color: #ff0000;
+  }
+  100% {
+    background-color: #ff00ff;
+  }
+}
+
+@keyframes textBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes colorPulse {
+  0% {
+    color: #00ff00;
+  }
+  50% {
+    color: #0000ff;
+  }
+  100% {
+    color: #00ff00;
+  }
+}
+
+.pizza-result {
+  width: 300px;
+  margin: 20px auto;
+  border: 5px dashed #ff00ff;
+  animation: backgroundSpin 5s infinite linear;
+  box-shadow: 0 0 20px #ff00ff;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+  padding: 10px;
+}
+
+.pizza-result .header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffff00;
+  background: #000;
+  padding: 5px;
+  animation: textBounce 1s infinite;
+}
+
+.pizza-result .content {
+  margin-top: 10px;
+  color: #000;
+  font-size: 16px;
+}
+
+.pizza-result .pizza-name,
+.pizza-result .creator-name,
+.pizza-result .vote-count {
+  font-weight: bold;
+  font-style: italic;
+  animation: colorPulse 2s infinite;
+}
+
+@keyframes winnerFlash {
+  0% {
+    background-color: gold;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    background-color: gold;
+  }
+}
+
+@keyframes scottSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Winner style */
+.pizza-result.winner {
+  border: 5px solid gold;
+  animation: winnerFlash 1s infinite;
+  box-shadow: 0 0 30px gold;
+}
+
+.pizza-result.winner .header {
+  color: #000;
+  background: linear-gradient(90deg, gold, orange, gold);
+  animation: textBounce 0.5s infinite;
+}
+
+/* Scott's choice style */
+.pizza-result.scott-choice {
+  border: 5px double #ff0000;
+  background: repeating-linear-gradient(
+    45deg,
+    #ff0000,
+    #ff0000 10px,
+    #00ff00 10px,
+    #00ff00 20px
+  );
+  animation: scottSpin 3s infinite linear;
+  box-shadow: 0 0 40px red, 0 0 60px lime;
+}
+
+.pizza-result.scott-choice .header {
+  font-size: 28px;
+  font-weight: bold;
+  background: black;
+  color: #ff00ff;
+  text-shadow: 2px 2px #00ffff;
+  animation: textBounce 0.7s infinite;
+}

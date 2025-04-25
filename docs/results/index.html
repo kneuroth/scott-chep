@@ -3,13 +3,104 @@
   <head>
     <title>Results</title>
     <link rel="stylesheet" href="style.css" />
+
     <script>
-      function playPromise(audio) {
-        return new Promise((resolve) => {
-          audio.onended = resolve;
-          audio.play();
+      // fetch("http://localhost:8080/result/scott")
+      fetch(
+        "https://pizza-vote-container-0-1-24906197462.us-central1.run.app/results/scott"
+      )
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.json();
+        })
+        .then((results) => {
+          const scottContainer = document.getElementById("scott-container");
+          const div = document.createElement("div");
+          results.forEach((result) => {
+            div.innerHTML = `<div class="pizza-result scott-choice">
+                <div class="header">🔥 SCOTT APPROVED 🔥</div>
+                <div class="content">
+                  <div>
+                    <strong>Pizza:</strong>
+                    <span class="pizza-name">${result.name}</span>
+                  </div>
+                  <div>
+                    <strong>Creator:</strong>
+                    <span class="creator-name">${result.creator}</span>
+                  </div>
+                </div>
+              </div>`;
+            scottContainer.appendChild(div);
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          document.getElementById("scott-output").textContent =
+            "Scott didn't vote yet!";
         });
-      }
+    </script>
+
+    <script>
+      // fetch("http://localhost:8080/results")
+      fetch(
+        "https://pizza-vote-container-0-1-24906197462.us-central1.run.app/results"
+      )
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.json();
+        })
+        .then((results) => {
+          const container = document.getElementById("results-container");
+
+          container.innerHTML = ""; // clear loading text
+
+          maxVotes = -1;
+
+          results.forEach((result) => {
+            maxVotes =
+              result.voteCount > maxVotes ? result.voteCount : maxVotes;
+          });
+
+          winnerIds = results.forEach((result) => {
+            const div = document.createElement("div");
+            if (result.voteCount === maxVotes) {
+              div.innerHTML = `
+              <div class="pizza-result winner">
+                <div class="header">🏆 WINNER WINNER PIZZA DINNER 🏆</div>
+                <div class="content">
+                  <div><strong>Pizza:</strong> <span class="pizza-name">${result.entryName}</span></div>
+                  <div><strong>Creator:</strong> <span class="creator-name">${result.creator}</span></div>
+                  <div><strong>Vote Count:</strong> <span class="vote-count">${result.voteCount}</span></div>
+                </div>
+              </div>
+              `;
+            } else {
+              div.innerHTML = `
+                <div class="pizza-result">
+                <div class="header">🍕 GOOD TRY!! 🍕</div>
+                <div class="content">
+                    <div><strong>Pizza:</strong> <span class="pizza-name">${result.entryName}</span></div>
+                    <div><strong>Creator:</strong> <span class="creator-name">${result.creator}</span></div>
+                    <div><strong>Vote Count:</strong> <span class="vote-count">${result.voteCount}</span></div>
+                  </div>
+                </div>
+              `;
+            }
+
+            container.appendChild(div);
+          });
+        })
+        .catch((error) => {
+          document.getElementById("output").textContent =
+            "Error: " + error.message;
+        });
     </script>
   </head>
+  <body>
+    <div id="results-container"></div>
+    <div id="output"></div>
+
+    <div id="scott-container"></div>
+    <div id="scott-output"></div>
+  </body>
 </html>
